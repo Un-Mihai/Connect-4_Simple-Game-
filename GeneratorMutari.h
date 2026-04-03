@@ -14,6 +14,8 @@ public:
 	static void realizeazaMutareJucator(int, int);
 	static int getColoanaMutare();
 
+	static void reset();
+
 private:
 	static int getScorMutare(int, int, bool);
 	static int getEvaluareMutare();

@@ -11,14 +11,16 @@ private:
 
 public:
 	Rama(int,int);
-	int getJeton(int, int) const;
 	void realizeazaMutare(int, int);
-	bool isJocFinalizat();
-	int getCuloareLaRand();
-	int getRandPreview(int);
+	void reset();
+	
+	bool isJocFinalizat() const;
+	char getCuloareLaRand() const;
+	char getJeton(int, int) const;
+	int getRandPreview(int) const;
 
 private:
-	
+
 	void verificaStatusJoc(int, int, char);
 	void afisareEroare(const char*) const;
 

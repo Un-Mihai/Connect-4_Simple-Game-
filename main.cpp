@@ -5,5 +5,5 @@
 
 int main() {
 	Game* game = new Game(700, 600);
-	game->Start();
+	game->startJoc();
 }

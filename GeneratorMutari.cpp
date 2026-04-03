@@ -226,3 +226,11 @@ int GeneratorMutari::getScorLinie(int y, int x, int pas_y, int pas_x, char culoa
 
 	return scor;
 }
+
+void GeneratorMutari::reset() {
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 7; j++) {
+			copie_rama[i][j] = '#';
+		}
+	}
+}

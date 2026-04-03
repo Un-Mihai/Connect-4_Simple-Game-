@@ -7,17 +7,30 @@
 class Game {
 
 private:
-	Color culoare_rama;
 	Rama rama;
 	int width;
 	int height;
+
+	Color culoare_rama;
+
+	Color culoare_jeton_galben;
+	Color culoare_preview_galben;
+	
+	Color culoare_jeton_rosu;
+	Color culoare_preview_rosu;
+
+	Color culoare_spatiu_liber;
 	
 public:
 	Game(int, int);
-	void Start();
+	void startJoc();
+	void gameOverScreen();
 
 private:
-	void getInputMouse();
+	bool isButtonRestartApasat() const;
+	void deseneazaGameOverScreen();
+	void getInputUtilizator();
+	void getInputGeneratorMutari();
 	void deseneazaJetoane() const;
 };
 

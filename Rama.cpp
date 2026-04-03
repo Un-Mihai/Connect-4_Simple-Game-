@@ -20,11 +20,11 @@ Rama::Rama(int width, int height) {
 	joc_finalizat = false;
 }
 
-int Rama::getCuloareLaRand() {
-	return (randul_galbenului) ? 1 : 2;
+char Rama::getCuloareLaRand() const{
+	return (randul_galbenului) ? 'G' : 'R';
 }
 
-int Rama::getRandPreview(int coloana) {
+int Rama::getRandPreview(int coloana) const{
 	if (rama[0][coloana] != '#') {
 		return -1;
 	}
@@ -41,7 +41,7 @@ void Rama::afisareEroare(const char* mesaj) const {
 	std::cout << mesaj << '\n';
 }
 
-bool Rama::isJocFinalizat() {
+bool Rama::isJocFinalizat() const{
 	return joc_finalizat;
 }
 
@@ -59,6 +59,19 @@ void Rama::realizeazaMutare(int coloana, int rand) {
 	verificaStatusJoc(rand, coloana, culoare);
 
 	randul_galbenului = !randul_galbenului;
+}
+
+void Rama::reset() {
+
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
+			rama[i][j] = '#';
+		}
+	}
+
+	randul_galbenului = false;
+	joc_finalizat = false;
+
 }
 
 void Rama::verificaStatusJoc(int rand, int coloana, char culoare){
@@ -151,18 +164,10 @@ void Rama::verificaStatusJoc(int rand, int coloana, char culoare){
 
 }
 
-int Rama::getJeton(int rand, int coloana) const {
+char Rama::getJeton(int rand, int coloana) const {
 	if (rand < 0 || rand >= height || coloana < 0 || coloana >= width) {
 		return -1;
 	}
 
-	if (rama[rand][coloana] == 'G') {
-		return 1;
-	}
-
-	if (rama[rand][coloana] == 'R') {
-		return 2;
-	}
-
-	return 0;
+	return rama[rand][coloana];
 }
