@@ -6,8 +6,9 @@ Rama::Rama(int width, int height) {
 		width = height = 15;
 	}
 
-	this->width = width;
-	this->height = height;
+	//marime fixa, in viitor poate scalez
+	this->width = 7;
+	this->height = 6;
 
 	for (int i = 0; i < height; i++) {
 		for (int j = 0; j < width; j++) {
@@ -15,7 +16,7 @@ Rama::Rama(int width, int height) {
 		}
 	}
 
-	randul_galbenului = true;
+	randul_galbenului = false;
 	joc_finalizat = false;
 }
 
@@ -40,23 +41,18 @@ void Rama::afisareEroare(const char* mesaj) const {
 	std::cout << mesaj << '\n';
 }
 
-bool Rama::getStatusJoc() {
+bool Rama::isJocFinalizat() {
 	return joc_finalizat;
 }
 
-void Rama::realizeazaMutare(int coloana) {
+void Rama::realizeazaMutare(int coloana, int rand) {
 
-	if (rama[0][coloana] != '#') {
+	if (rand == -1) {
 		afisareEroare("Coloana aleasa e plina!!");
 		return;
 	}
 
 	char culoare = (randul_galbenului) ? 'G' : 'R';
-
-	int rand = height - 1;
-	while (rama[rand][coloana] != '#') {
-		rand--;
-	}
 
 	rama[rand][coloana] = culoare;
 
@@ -155,7 +151,7 @@ void Rama::verificaStatusJoc(int rand, int coloana, char culoare){
 
 }
 
-int Rama::getJeton(int rand, int coloana) {
+int Rama::getJeton(int rand, int coloana) const {
 	if (rand < 0 || rand >= height || coloana < 0 || coloana >= width) {
 		return -1;
 	}

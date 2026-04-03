@@ -17,9 +17,8 @@ public:
 	void Start();
 
 private:
-	void getApasare();
-	void deseneazaJetoane();
-	void deseneazaPreview();
+	void getInputMouse();
+	void deseneazaJetoane() const;
 };
 
 #endif

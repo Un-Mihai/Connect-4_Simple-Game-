@@ -5,15 +5,15 @@ class Rama {
 private:
 	int width;
 	int height;
-	char rama[20][20];
+	char rama[6][7];
 	bool randul_galbenului; //primul jucator e galben, celalalt e rosu
 	bool joc_finalizat;
 
 public:
 	Rama(int,int);
-	int getJeton(int, int);
-	void realizeazaMutare(int);
-	bool getStatusJoc();
+	int getJeton(int, int) const;
+	void realizeazaMutare(int, int);
+	bool isJocFinalizat();
 	int getCuloareLaRand();
 	int getRandPreview(int);
 
