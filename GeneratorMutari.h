@@ -17,7 +17,7 @@ public:
 	static void reset();
 
 private:
-	static int getScorMutare(int, int, bool);
+	static int getScorMutare(int, int, bool, int, int);
 	static int getEvaluareMutare();
 	static int getScorLinie(int, int, int, int, char);
 	static int getScorOrizontal();

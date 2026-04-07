@@ -48,7 +48,7 @@ void GeneratorMutari::undoMutare(int coloana) {
 }
 
 int GeneratorMutari::getColoanaMutare() {
-	int scor_maxim = -10000;
+	int scor_maxim = -2000000;
 	int coloana_aleasa = 0;
 	for (int i = 0; i < 7; i++) {
 		if (copie_rama[0][i] != '#') {
@@ -56,7 +56,7 @@ int GeneratorMutari::getColoanaMutare() {
 		}
 
 		realizeazaMutare(i, culoare);
-		int scor_mutare = getScorMutare(0, 6, false);
+		int scor_mutare = getScorMutare(0, 6, false, -2000000, 2000000);
 		undoMutare(i);
 
 		if (scor_mutare > scor_maxim) {
@@ -68,7 +68,7 @@ int GeneratorMutari::getColoanaMutare() {
 	return coloana_aleasa;
 }
 
-int GeneratorMutari::getScorMutare(int current_depth, int max_depth, bool maximize) { // minimax
+int GeneratorMutari::getScorMutare(int current_depth, int max_depth, bool maximize, int alpha, int beta) { // minimax
 
 	if (current_depth == max_depth) {
 		return getEvaluareMutare();
@@ -92,11 +92,19 @@ int GeneratorMutari::getScorMutare(int current_depth, int max_depth, bool maximi
 			}
 
 			realizeazaMutare(i, culoare);
-			int scor_mutare = getScorMutare(current_depth + 1, max_depth, !maximize);
+			int scor_mutare = getScorMutare(current_depth + 1, max_depth, !maximize, alpha, beta);
 			undoMutare(i);
 
 			if (scor_mutare > scor_maxim) {
 				scor_maxim = scor_mutare;
+			}
+
+			if (scor_maxim > alpha) {
+				alpha = scor_maxim;
+			}
+
+			if (beta <= alpha) {
+				break;
 			}
 		}
 
@@ -111,12 +119,20 @@ int GeneratorMutari::getScorMutare(int current_depth, int max_depth, bool maximi
 		}
 
 		realizeazaMutare(i, culoare_inamic);
-		int scor_mutare = getScorMutare(current_depth + 1, max_depth, !maximize);
+		int scor_mutare = getScorMutare(current_depth + 1, max_depth, !maximize, alpha, beta);
 		undoMutare(i);
 
 		
 		if (scor_mutare < scor_minim) {
 			scor_minim = scor_mutare;
+		}
+
+		if (scor_minim < beta) {
+			beta = scor_minim;
+		}
+
+		if (beta <= alpha) {
+			break;
 		}
 	}
 
