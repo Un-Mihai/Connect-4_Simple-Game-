@@ -11,15 +11,15 @@ Game::Game(int width, int height) : rama(width / 100, height / 100) {
 	this->width = width;
 	this->height = height;
 	
-	this->culoare_rama = Color(61, 92, 200, 255);
+	this->culoare_rama = (Color){61, 92, 200, 255};
 
-	this->culoare_jeton_galben = Color(224, 212, 60, 255);
-	this->culoare_preview_galben = Color(224, 212, 60, 80);
+	this->culoare_jeton_galben = (Color){224, 212, 60, 255};
+	this->culoare_preview_galben = (Color){224, 212, 60, 80};
 
-	this->culoare_jeton_rosu = Color(223, 30, 30, 255);
-	this->culoare_preview_rosu = Color(223, 30, 30, 80);
+	this->culoare_jeton_rosu = (Color){223, 30, 30, 255};
+	this->culoare_preview_rosu = (Color){223, 30, 30, 80};
 
-	this->culoare_spatiu_liber = Color(189, 189, 189, 255);
+	this->culoare_spatiu_liber = (Color){189, 189, 189, 255};
 
 	GeneratorMutari::setCuloare((rama.getCuloareLaRand() == 'G') ? 'R' : 'G');
 }
@@ -129,7 +129,7 @@ void Game::deseneazaGameOverScreen() {
 	deseneazaJetoane();
 
 	//overlay gri transparent
-	DrawRectangle(0, 0, this->width, this->height, Color(118, 115, 114, 90));
+	DrawRectangle(0, 0, this->width, this->height, (Color){118, 115, 114, 90});
 
 	if (rama.getCuloareLaRand() == 'R') {
 		DrawText("Ai pierdut!", 200, 150, 50, WHITE);
@@ -138,7 +138,7 @@ void Game::deseneazaGameOverScreen() {
 		DrawText("Ai casigat!", 200, 150, 50, WHITE);
 	}
 
-	DrawRectangle(275, 280, 150, 40, Color(20, 158, 31, 255));
+	DrawRectangle(275, 280, 150, 40, (Color){20, 158, 31, 255});
 
 	DrawText("Restart", 290, 290, 20, WHITE);
 }
